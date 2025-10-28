@@ -28,8 +28,10 @@ def demo_funciones_basicas():
     print(f"Total de la compra: ${total}")
     
     print("\nEjemplo 3: Función con valor por defecto")
-    precio_final = aplicar_descuento(200)
-    print(f"Precio con descuento: ${precio_final}")
+    precio_final_uno = aplicar_descuento(200)
+    precio_final_dos = aplicar_descuento(200,0.2)
+    print(f"Precio con descuento: ${precio_final_uno}")
+    print(f"Precio con descuento: ${precio_final_dos}")
 
 if __name__ == "__main__":
     demo_funciones_basicas()
