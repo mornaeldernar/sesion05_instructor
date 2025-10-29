@@ -14,12 +14,13 @@ def demo_funciones_avanzadas():
     # Ejemplo 2: Kwargs para argumentos nombrados
     def crear_producto(**kwargs):
         return kwargs
+
     
     # Ejemplo 3: Función anidada
     def calcular_descuentos(precios):
+        
         def aplicar_descuento(precio, porcentaje):
             return precio * (1 - porcentaje)
-        
         descuentos = []
         for precio in precios:
             if precio >= 100:
@@ -30,7 +31,7 @@ def demo_funciones_avanzadas():
     
     # Demostración de uso
     print("\nEjemplo 1: Args")
-    total = sumar_precios(100, 200, 300)
+    total = sumar_precios(100, 200, 300,500,100,231,50,127,47,102,23)
     print(f"Suma total: ${total}")
     
     print("\nEjemplo 2: Kwargs")
@@ -42,6 +43,6 @@ def demo_funciones_avanzadas():
     precios_con_descuento = calcular_descuentos(precios)
     print("Precios originales:", precios)
     print("Precios con descuento:", precios_con_descuento)
-
+    print(aplicar_descuento(200,0.1))
 if __name__ == "__main__":
     demo_funciones_avanzadas()

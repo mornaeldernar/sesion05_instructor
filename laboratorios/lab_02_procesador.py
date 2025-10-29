@@ -22,12 +22,32 @@ def procesar_ventas(*args, **kwargs):
     """
     # TODO: Implementar el procesamiento siguiendo estos pasos:
     # 1. Validar que haya ventas para procesar
+    if not args:
+        return {"error": "No hay ventas para procesar"} 
     # 2. Crear diccionario para resultados
+    resultados = {}
     # 3. Si kwargs['calcular_total']: calcular suma total
+    if kwargs['calcular_total']:
+        resultados['total'] = sum(args)
     # 4. Si kwargs['encontrar_maximo']: encontrar venta máxima
+    if kwargs.get('encontrar_maximo'):
+        resultados['maximo'] = max(args) if args else 0
     # 5. Si kwargs['contar_superiores']: contar ventas > umbral
-    
-    raise NotImplementedError("¡Función no implementada!")
+    if kwargs.get('contar_superiores'):
+        umbral = kwargs.get('umbral', 0)
+        superiores = []
+        for valor in args:
+            if valor > umbral:
+                superiores.append(1)
+        superiores2= [1 for valor in args if valor > umbral]
+        print(superiores)
+        print(superiores2)
+        print(sum(superiores))
+        print(sum(superiores2))
+
+        resultados['superiores'] = sum(1 for v in args if v > umbral)
+
+    return resultados
 
 def main():
     # Casos de prueba
@@ -43,7 +63,7 @@ def main():
         print(f"Resultados: {resultado1}")
         
         # Caso 2: Contar ventas superiores
-        resultado2 = procesar_ventas(*ventas, contar_superiores=True, umbral=200)
+        resultado2 = procesar_ventas(*ventas, contar_superiores=True, encontrar_maximo=True, umbral=200, calcular_total=True)
         print("\nCaso 2 - Ventas superiores a $200:")
         print(f"Resultados: {resultado2}")
         

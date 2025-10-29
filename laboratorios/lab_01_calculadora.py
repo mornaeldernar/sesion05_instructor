@@ -24,12 +24,22 @@ def calcular_precio_final(precio_base, cantidad, descuento=0):
     """
     # TODO: Implementar el cálculo siguiendo estos pasos:
     # 1. Validar que precio_base y cantidad sean positivos
+    if precio_base < 0:
+        raise ValueError("El precio base debe ser un valor positivo.")
+    if cantidad < 0:
+        raise ValueError("La cantidad debe ser un valor positivo.")
     # 2. Validar que descuento esté entre 0 y 1
+    if not (0 <= descuento <= 1):
+        raise ValueError("El descuento debe estar entre 0 y 1.")
     # 3. Calcular subtotal (precio_base * cantidad)
+    subtotal = precio_base * cantidad
     # 4. Aplicar descuento si existe
+    if descuento > 0:
+        subtotal = subtotal * (1 - descuento)
     # 5. Agregar IVA (19%)
+    total = subtotal * 1.19
+    return total
     
-    raise NotImplementedError("¡Función no implementada!")
 
 def main():
     # Casos de prueba
@@ -37,7 +47,7 @@ def main():
     
     try:
         # Caso 1: Sin descuento
-        precio1 = calcular_precio_final(100, 2)
+        precio1 = calcular_precio_final(-100, 2)
         print(f"\nCaso 1 - Precio base: $100, Cantidad: 2")
         print(f"Precio final: ${precio1}")
         
